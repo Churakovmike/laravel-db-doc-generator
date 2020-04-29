@@ -2,6 +2,7 @@
 
 namespace ChurakovMike\DbDocumentor\Generators;
 
+use ChurakovMike\DbDocumentor\Interfaces\FileAccesors;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use ChurakovMike\DbDocumentor\Utils\ClassFinder;
@@ -14,6 +15,7 @@ use ChurakovMike\DbDocumentor\Traits\Configurable;
  * @property string $output
  * @property string $modelPath
  * @property string|array $excludedDirectories
+ * @property FileAccesors $fileManager
  *
  * @mixin Configurable
  */
@@ -37,11 +39,19 @@ class DefaultGenerator
     protected $excludedDirectories;
 
     /**
-     * DefaultGenerator constructor.
+     * @var
      */
-    public function __construct()
+    protected $fileManager;
+
+    /**
+     * DefaultGenerator constructor.
+     *
+     * @param FileAccesors $fileManager
+     */
+    public function __construct(FileAccesors $fileManager)
     {
         $this->prepare();
+        $this->fileManager = $fileManager;
     }
 
     /**

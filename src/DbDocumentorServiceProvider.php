@@ -3,6 +3,7 @@
 namespace ChurakovMike\DbDocumentor;
 
 use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
+use ChurakovMike\DbDocumentor\Utils\FileManager;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,14 +23,27 @@ class DbDocumentorServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->commands([
-                GeneratorCommand::class,
-            ]);
+            $this->registerCommands();
+            $this->registerClasses();
         }
     }
 
     public function register()
     {
         //
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands([
+            GeneratorCommand::class,
+        ]);
+    }
+
+    protected function registerClasses()
+    {
+        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\FileAccesors', function ($app) {
+            return new FileManager();
+        });
     }
 }
