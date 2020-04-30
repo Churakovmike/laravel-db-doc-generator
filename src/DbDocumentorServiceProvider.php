@@ -4,7 +4,7 @@ namespace ChurakovMike\DbDocumentor;
 
 use Illuminate\Support\Facades\App;
 use ChurakovMike\DbDocumentor\Utils\{
-    FileManager, ModelScanner, RenderTemplate
+    FileManager, ModelScanner, RenderTemplate, ViewPresenter
 };
 use Illuminate\Support\ServiceProvider;
 use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
@@ -51,16 +51,21 @@ class DbDocumentorServiceProvider extends ServiceProvider
     protected function registerClasses()
     {
         $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface', function ($app) {
-            return new FileManager();
+            return $app->make(FileManager::class);
         });
 
         $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface', function ($app) {
-            return new RenderTemplate();
+            return $app->make(RenderTemplate::class);
+        });
+
+        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface', function ($app) {
+            return $app->make(ViewPresenter::class);
         });
 
         $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface', function ($app) {
-            return new ModelScanner();
+            return $app->make(ModelScanner::class);
         });
+
     }
 
     public function register()

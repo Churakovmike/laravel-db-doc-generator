@@ -2,14 +2,13 @@
 
 namespace ChurakovMike\DbDocumentor\Generators;
 
-use ChurakovMike\DbDocumentor\Interfaces\FileAccesors;
 use ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface;
 use ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface;
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Model;
-use ChurakovMike\DbDocumentor\Utils\ClassFinder;
 use ChurakovMike\DbDocumentor\Traits\Configurable;
+use ChurakovMike\DbDocumentor\Utils\ClassFinder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 /**
  * Class DefaultGenerator
@@ -81,7 +80,7 @@ class DefaultGenerator
      */
     public function run()
     {
-        var_dump(view('churakovmike_dbdoc::test')->render());
+        var_dump(view('churakovmike_dbdoc::model-template')->render());
         foreach (scandir($this->modelPath) as $path) {
             if (File::isDirectory($path) || File::isDirectory(app_path() . DIRECTORY_SEPARATOR . $path)) {
                 continue;
@@ -94,6 +93,8 @@ class DefaultGenerator
                 if (!is_a($object, Model::class)) {
                     continue;
                 }
+
+            $presenter = $this->modelScanner->getDataFromModel($object);
 
             } catch (\Throwable $exception) {
                 echo $exception->getMessage();
