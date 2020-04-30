@@ -3,9 +3,10 @@
 namespace ChurakovMike\DbDocumentor;
 
 use Illuminate\Support\Facades\App;
+use ChurakovMike\DbDocumentor\Utils\{
+    FileManager, ModelScanner, RenderTemplate
+};
 use Illuminate\Support\ServiceProvider;
-use ChurakovMike\DbDocumentor\Utils\FileManager;
-use ChurakovMike\DbDocumentor\Utils\RenderTemplate;
 use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 
 /**
@@ -26,6 +27,7 @@ class DbDocumentorServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->registerCommands();
             $this->registerClasses();
+            $this->loadViewsFrom(__DIR__ . '/../resources/views', 'churakovmike_dbdoc');
         }
     }
 
@@ -54,6 +56,10 @@ class DbDocumentorServiceProvider extends ServiceProvider
 
         $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface', function ($app) {
             return new RenderTemplate();
+        });
+
+        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface', function ($app) {
+            return new ModelScanner();
         });
     }
 
