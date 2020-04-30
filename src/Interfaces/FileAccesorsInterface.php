@@ -5,6 +5,6 @@ namespace ChurakovMike\DbDocumentor\Interfaces;
 /**
  * Interface FileAccess
  */
-interface FileAccesors
+interface FileAccesorsInterface
 {
 }

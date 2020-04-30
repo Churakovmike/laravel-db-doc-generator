@@ -3,6 +3,8 @@
 namespace ChurakovMike\DbDocumentor\Generators;
 
 use ChurakovMike\DbDocumentor\Interfaces\FileAccesors;
+use ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface;
+use ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use ChurakovMike\DbDocumentor\Utils\ClassFinder;
@@ -15,7 +17,8 @@ use ChurakovMike\DbDocumentor\Traits\Configurable;
  * @property string $output
  * @property string $modelPath
  * @property string|array $excludedDirectories
- * @property FileAccesors $fileManager
+ * @property FileAccesorsInterface $fileManager
+ * @property RenderTemplateInterface $renderer
  *
  * @mixin Configurable
  */
@@ -39,19 +42,26 @@ class DefaultGenerator
     protected $excludedDirectories;
 
     /**
-     * @var
+     * @var FileAccesorsInterface $fileManager
      */
     protected $fileManager;
 
     /**
+     * @var RenderTemplateInterface $renderer
+     */
+    protected $renderer;
+
+    /**
      * DefaultGenerator constructor.
      *
-     * @param FileAccesors $fileManager
+     * @param FileAccesorsInterface $fileManager
+     * @param RenderTemplateInterface $renderer
      */
-    public function __construct(FileAccesors $fileManager)
+    public function __construct(FileAccesorsInterface $fileManager, RenderTemplateInterface $renderer)
     {
         $this->prepare();
         $this->fileManager = $fileManager;
+        $this->renderer = $renderer;
     }
 
     /**
@@ -79,6 +89,9 @@ class DefaultGenerator
         }
     }
 
+    /**
+     *
+     */
     private function prepare()
     {
         clearstatcache();

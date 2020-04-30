@@ -2,10 +2,11 @@
 
 namespace ChurakovMike\DbDocumentor;
 
-use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
-use ChurakovMike\DbDocumentor\Utils\FileManager;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use ChurakovMike\DbDocumentor\Utils\FileManager;
+use ChurakovMike\DbDocumentor\Utils\RenderTemplate;
+use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 
 /**
  * Class DbDocumentorServiceProvider
@@ -28,11 +29,11 @@ class DbDocumentorServiceProvider extends ServiceProvider
         }
     }
 
-    public function register()
-    {
-        //
-    }
-
+    /**
+     * Register console command
+     *
+     * @return void
+     */
     protected function registerCommands()
     {
         $this->commands([
@@ -40,10 +41,24 @@ class DbDocumentorServiceProvider extends ServiceProvider
         ]);
     }
 
+    /**
+     * Register utils classes
+     *
+     * @return void
+     */
     protected function registerClasses()
     {
-        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\FileAccesors', function ($app) {
+        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface', function ($app) {
             return new FileManager();
         });
+
+        $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface', function ($app) {
+            return new RenderTemplate();
+        });
+    }
+
+    public function register()
+    {
+        //
     }
 }
