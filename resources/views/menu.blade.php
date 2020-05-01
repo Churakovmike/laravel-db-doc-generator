@@ -3,9 +3,15 @@
         <ul class="nav flex-column">
             @foreach($tables as $table)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{$table}}.html">
-                        {!! $table !!}
-                    </a>
+                    @if(isset($currentTable) && $currentTable == $table)
+                        <a class="nav-link active" href="{{$table}}.html">
+                            {!! $table !!}
+                        </a>
+                    @else
+                        <a class="nav-link" href="{{$table}}.html">
+                            {!! $table !!}
+                        </a>
+                    @endif
                 </li>
             @endforeach
         </ul>

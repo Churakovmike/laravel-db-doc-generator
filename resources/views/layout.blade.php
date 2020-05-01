@@ -21,10 +21,10 @@
     <div class="row">
         @include('churakovmike_dbdoc::menu', [
             'tables' => $tables,
+            'currentTable' => $presenter->getTableName(),
         ])
         @include('churakovmike_dbdoc::content', [
             'presenter' => $presenter,
-
         ])
     </div>
 </div>

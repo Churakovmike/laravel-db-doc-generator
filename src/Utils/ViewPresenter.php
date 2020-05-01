@@ -10,7 +10,7 @@ use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
  * @package ChurakovMike\DbDocumentor\Utils
  *
  * @property string $tableName
- * @property array $columns
+ * @property array|ColumnInterface[] $columns
  */
 class ViewPresenter implements ViewPresenterInterface
 {
@@ -22,7 +22,7 @@ class ViewPresenter implements ViewPresenterInterface
     /**
      * @var array $columns
      */
-    protected $columns;
+    protected $columns = [];
 
     /**
      * @return string
@@ -50,7 +50,7 @@ class ViewPresenter implements ViewPresenterInterface
     }
 
     /**
-     * @return array|mixed
+     * @return array|ColumnInterface[]
      */
     public function getColumns()
     {

@@ -2,6 +2,7 @@
 
 namespace ChurakovMike\DbDocumentor\Utils;
 
+use ChurakovMike\DbDocumentor\Interfaces\ColumnInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\DB;
  *
  * @property ViewPresenterInterface $presenter
  * @property Model|null $model
- * @property array|null $tables
+ * @property array $tables
+ * @property array $tablesWithoutModel
  */
 class ModelScanner implements ModelScannerInterface
 {
@@ -33,6 +35,11 @@ class ModelScanner implements ModelScannerInterface
     protected $tables = [];
 
     /**
+     * @var array $tablesWithoutModel
+     */
+    protected $tablesWithoutModel = [];
+
+    /**
      * ModelScanner constructor.
      * @param ViewPresenterInterface $presenter
      */
@@ -41,8 +48,13 @@ class ModelScanner implements ModelScannerInterface
         $this->presenter = $presenter;
     }
 
+    /**
+     * @param Model $model
+     * @return ViewPresenterInterface
+     */
     public function getDataFromModel(Model $model)
     {
+        $this->presenter->reset();
         $this->model = $model;
         $this->setTableName();
         $this->setTableColumns();
@@ -59,20 +71,38 @@ class ModelScanner implements ModelScannerInterface
 
     private function setTableColumns()
     {
-        $schema = DB::connection()->getDoctrineSchemaManager();
-//        $schema = $this->model->getConnection()->getDoctrineSchemaManager();
-        $tables = $schema->listTables();
-
-
         $columns = $this->model->getConnection()
             ->getSchemaBuilder()
             ->getColumnListing($this->model->getTable());
 
         foreach ($columns as $column) {
-            $length = $this->model->getConnection()
-                ->getDoctrineColumn($this->model->getTable(), $column)
-                ->getLength();
+            $this->presenter->addColumn($this->buildColumn($column));
         }
+    }
+
+    /**
+     * @param $columnName
+     * @return ColumnInterface
+     */
+    private function buildColumn($columnName)
+    {
+        $databaseColumn = $this->model->getConnection()
+            ->getDoctrineColumn($this->model->getTable(), $columnName);
+
+        return new Column([
+            'name' => $columnName,
+            'type' => $databaseColumn->getType()->getName(),
+            'comment' => $databaseColumn->getComment(),
+            'autoincrement' => $databaseColumn->getAutoincrement(),
+            'unsigned' => $databaseColumn->getUnsigned(),
+            'definition' => $databaseColumn->getColumnDefinition(),
+            'defaultValue' => $databaseColumn->getDefault(),
+            'fixed' => $databaseColumn->getFixed(),
+            'isNotNull' => $databaseColumn->getNotnull(),
+            'precision' => $databaseColumn->getPrecision(),
+            'scale' => $databaseColumn->getScale(),
+            'length' => $databaseColumn->getLength(),
+        ]);
     }
 
     /**

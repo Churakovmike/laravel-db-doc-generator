@@ -1,6 +1,6 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <h1>table_name</h1>description from model
-    <div>associated with model App\User.php</div>
+    <h1>{{$presenter->getTableName()}}</h1>TODO:description from model
+    <div>TODO:associated with model App\User.php</div>
     <h2>Table columns</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">
@@ -13,34 +13,18 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($presenter->getColumns() as $column)
             <tr>
-                <td>id</td>
-                <td>big integer</td>
-                <td>comment from database + model comment</td>
-                <td>PRIMARY_KEY, AUTOINCREMENT</td>
+                <td>{{$column->getName()}}</td>
+                <td>{{$column->getType()}}</td>
+                <td>{{$column->getComment()}}</td>
+                <td>{{$column->getOptions()}}</td>
             </tr>
-            <tr>
-                <td>email</td>
-                <td>varchar(128)</td>
-                <td>comment from database + model comment</td>
-                <td>UNIQUE</td>
-            </tr>
-            <tr>
-                <td>name</td>
-                <td>varchar(128)</td>
-                <td>comment from database + model comment</td>
-                <td> - </td>
-            </tr>
-            <tr>
-                <td>biography</td>
-                <td>text</td>
-                <td>comment from database + model comment</td>
-                <td> - </td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
-    <h2>Foreign Keys</h2>
+    <h2>TODO:Foreign Keys</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">
             <thead>
@@ -69,7 +53,7 @@
             </tbody>
         </table>
     </div>
-    <h2>Indexes</h2>
+    <h2>TODO:Indexes</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">
             <thead>

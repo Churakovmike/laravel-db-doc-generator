@@ -144,7 +144,7 @@ class DefaultGenerator
 
     /**
      * Directory for scanning.
-     * 
+     *
      * @return array
      */
     private function getNeededDirectories()

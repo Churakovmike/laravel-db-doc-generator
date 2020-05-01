@@ -20,7 +20,18 @@ interface ViewPresenterInterface
     public function setTableName(string $name);
 
     /**
+     * @param ColumnInterface $column
+     * @return mixed
+     */
+    public function addColumn(ColumnInterface $column);
+
+    /**
      * @return mixed
      */
     public function getColumns();
+
+    /**
+     * @return mixed
+     */
+    public function reset();
 }
