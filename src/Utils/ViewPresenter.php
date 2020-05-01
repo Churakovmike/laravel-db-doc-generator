@@ -2,13 +2,15 @@
 
 namespace ChurakovMike\DbDocumentor\Utils;
 
+use ChurakovMike\DbDocumentor\Interfaces\ColumnInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
 
 /**
- * Class ViewPresenter
+ * Class ViewPresenter.
  * @package ChurakovMike\DbDocumentor\Utils
  *
- * @property string $tableName;
+ * @property string $tableName
+ * @property array $columns
  */
 class ViewPresenter implements ViewPresenterInterface
 {
@@ -17,6 +19,9 @@ class ViewPresenter implements ViewPresenterInterface
      */
     protected $tableName;
 
+    /**
+     * @var array $columns
+     */
     protected $columns;
 
     /**
@@ -36,8 +41,30 @@ class ViewPresenter implements ViewPresenterInterface
         $this->tableName = $name;
     }
 
+    /**
+     * @param ColumnInterface $column
+     */
+    public function addColumn(ColumnInterface $column)
+    {
+        $this->columns[] = $column;
+    }
+
+    /**
+     * @return array|mixed
+     */
     public function getColumns()
     {
-        // TODO: Implement getColumns() method.
+        return $this->columns;
+    }
+
+    /**
+     * Flush stored data.
+     *
+     * @return void
+     */
+    public function reset()
+    {
+        $this->tableName = '';
+        $this->columns = [];
     }
 }

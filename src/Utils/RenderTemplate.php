@@ -10,8 +10,13 @@ use ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface;
  */
 class RenderTemplate implements RenderTemplateInterface
 {
-    public function test()
+    /**
+     * @param string $view
+     * @param array $data
+     * @return array|mixed|string
+     */
+    public function renderView(string $view, array $data = [])
     {
-
+        return view($view, $data)->render();
     }
 }

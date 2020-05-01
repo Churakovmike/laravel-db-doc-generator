@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @property ViewPresenterInterface $presenter
  * @property Model|null $model
+ * @property array|null $tables
  */
 class ModelScanner implements ModelScannerInterface
 {
@@ -25,6 +26,11 @@ class ModelScanner implements ModelScannerInterface
      * @var Model|null $model
      */
     protected $model;
+
+    /**
+     * @var array $tables
+     */
+    protected $tables = [];
 
     /**
      * ModelScanner constructor.
@@ -78,11 +84,10 @@ class ModelScanner implements ModelScannerInterface
     {
         $schema = DB::connection()->getDoctrineSchemaManager();
         $tables = $schema->listTables();
-        $tableNames = [];
         foreach ($tables as &$table) {
-            $tableNames[] = $table->getName();
+            $this->tables[] = $table->getName();
         }
 
-        return $tableNames;
+        return $this->tables;
     }
 }

@@ -1,1 +1,1 @@
-@extends('layout)
+@extends('churakovmike_dbdoc::layout')

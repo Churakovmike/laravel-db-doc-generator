@@ -12,7 +12,7 @@ interface ModelScannerInterface
     /**
      * @param Model $model
      *
-     * @return mixed
+     * @return ViewPresenterInterface
      */
     public function getDataFromModel(Model $model);
 
