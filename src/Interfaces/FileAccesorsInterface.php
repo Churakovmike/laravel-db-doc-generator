@@ -7,4 +7,10 @@ namespace ChurakovMike\DbDocumentor\Interfaces;
  */
 interface FileAccesorsInterface
 {
+    /**
+     * @param $filename
+     * @param $content
+     * @return mixed
+     */
+    public function saveAsFile($filename, $content);
 }

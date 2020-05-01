@@ -5,6 +5,7 @@ namespace ChurakovMike\DbDocumentor\Utils;
 use ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ModelScanner
@@ -52,7 +53,8 @@ class ModelScanner implements ModelScannerInterface
 
     private function setTableColumns()
     {
-        $schema = $this->model->getConnection()->getDoctrineSchemaManager();
+        $schema = DB::connection()->getDoctrineSchemaManager();
+//        $schema = $this->model->getConnection()->getDoctrineSchemaManager();
         $tables = $schema->listTables();
 
 
@@ -65,5 +67,22 @@ class ModelScanner implements ModelScannerInterface
                 ->getDoctrineColumn($this->model->getTable(), $column)
                 ->getLength();
         }
+    }
+
+    /**
+     * Collect table names
+     *
+     * @return array
+     */
+    public function getTables()
+    {
+        $schema = DB::connection()->getDoctrineSchemaManager();
+        $tables = $schema->listTables();
+        $tableNames = [];
+        foreach ($tables as &$table) {
+            $tableNames[] = $table->getName();
+        }
+
+        return $tableNames;
     }
 }

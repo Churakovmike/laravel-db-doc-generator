@@ -15,4 +15,9 @@ interface ModelScannerInterface
      * @return mixed
      */
     public function getDataFromModel(Model $model);
+
+    /**
+     * @return array
+     */
+    public function getTables();
 }

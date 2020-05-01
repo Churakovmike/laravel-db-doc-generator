@@ -69,10 +69,10 @@ class DefaultGenerator
         ModelScannerInterface $modelScanner,
         RenderTemplateInterface $renderer
     ) {
-        $this->prepare();
         $this->fileManager = $fileManager;
         $this->modelScanner = $modelScanner;
         $this->renderer = $renderer;
+        $this->prepare();
     }
 
     /**
@@ -80,7 +80,10 @@ class DefaultGenerator
      */
     public function run()
     {
-        var_dump(view('churakovmike_dbdoc::model-template')->render());
+        $this->modelScanner->getTables();
+        $this->fileManager->saveAsFile('index.html',
+            view('churakovmike_dbdoc::index', ['tables' => $this->modelScanner->getTables()])->render());
+
         foreach (scandir($this->modelPath) as $path) {
             if (File::isDirectory($path) || File::isDirectory(app_path() . DIRECTORY_SEPARATOR . $path)) {
                 continue;
@@ -103,9 +106,6 @@ class DefaultGenerator
         }
     }
 
-    /**
-     *
-     */
     private function prepare()
     {
         clearstatcache();

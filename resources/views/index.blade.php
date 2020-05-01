@@ -23,42 +23,13 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
+                    @foreach($tables as $table)
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            users
+                        <a class="nav-link" href="{{$table}}.html">
+                            {!! $table !!}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            reports
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            tariffs
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            posts
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            blogs
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            subscribers
-                        </a>
-                    </li>
-
+                    @endforeach
                 </ul>
             </div>
         </nav>

@@ -49,14 +49,14 @@ class ClassFinder
         $count = count($tokens);
         $i = 0;
         $namespace = '';
-        $namespace_ok = false;
+        $namespaceOk = false;
         while ($i < $count) {
             $token = $tokens[$i];
             if (is_array($token) && $token[0] === T_NAMESPACE) {
                 // Found namespace declaration
                 while (++$i < $count) {
                     if ($tokens[$i] === ';') {
-                        $namespace_ok = true;
+                        $namespaceOk = true;
                         $namespace = trim($namespace);
                         break;
                     }
@@ -66,7 +66,7 @@ class ClassFinder
             }
             $i++;
         }
-        if (!$namespace_ok) {
+        if (!$namespaceOk) {
             return null;
         } else {
             return $namespace;
@@ -83,7 +83,7 @@ class ClassFinder
     {
         $php_code = file_get_contents($filePathName);
 
-        $classes = array();
+        $classes = [];
         $tokens = token_get_all($php_code);
         $count = count($tokens);
         for ($i = 2; $i < $count; $i++) {
