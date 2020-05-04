@@ -9,6 +9,8 @@
                 <th>Column</th>
                 <th>Type</th>
                 <th>Comment</th>
+                <th>Default</th>
+                <th>Not null</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -18,6 +20,8 @@
                 <td>{{$column->getName()}}</td>
                 <td>{{$column->getType()}}</td>
                 <td>{{$column->getComment()}}</td>
+                <td>{{$column->getDefaultValue()}}</td>
+                <td>{{$column->getIsNull()}}</td>
                 <td>{{$column->getOptions()}}</td>
             </tr>
             @endforeach

@@ -17,7 +17,18 @@ interface ModelScannerInterface
     public function getDataFromModel(Model $model);
 
     /**
+     * @param string $table
+     * @return ViewPresenterInterface
+     */
+    public function getDataFromTable(string $table);
+
+    /**
      * @return array
      */
     public function getTables();
+
+    /**
+     * @return array
+     */
+    public function getTablesWithoutModel();
 }

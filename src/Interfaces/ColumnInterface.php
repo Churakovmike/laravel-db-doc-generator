@@ -35,4 +35,14 @@ interface ColumnInterface
      * @return mixed
      */
     public function getOptions();
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultValue();
+
+    /**
+     * @return mixed
+     */
+    public function getIsNull();
 }

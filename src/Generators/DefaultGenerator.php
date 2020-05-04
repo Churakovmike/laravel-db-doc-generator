@@ -111,13 +111,27 @@ class DefaultGenerator
                                 'tables' => $this->modelScanner->getTables(),
                                 'presenter' => $presenter,
                             ]
-                        ));
-
+                        )
+                    );
                 } catch (\Throwable $exception) {
                     echo $exception->getMessage();
                     continue;
                 }
             }
+        }
+
+        foreach ($this->modelScanner->getTablesWithoutModel() as $table) {
+            $presenter = $this->modelScanner->getDataFromTable($table);
+            $this->fileManager->saveAsFile(
+                $presenter->getTableName() . '.html',
+                $this->renderer->renderView(
+                    'churakovmike_dbdoc::model-template',
+                    [
+                        'tables' => $this->modelScanner->getTables(),
+                        'presenter' => $presenter,
+                    ]
+                )
+            );
         }
     }
 

@@ -46,6 +46,7 @@ class ModelScanner implements ModelScannerInterface
     public function __construct(ViewPresenterInterface $presenter)
     {
         $this->presenter = $presenter;
+        $this->loadTables();
     }
 
     /**
@@ -58,36 +59,69 @@ class ModelScanner implements ModelScannerInterface
         $this->model = $model;
         $this->setTableName();
         $this->setTableColumns();
+        $position = array_search($this->presenter->getTableName(), $this->tablesWithoutModel);
+        unset($this->tablesWithoutModel[$position]);
         return $this->presenter;
     }
 
     /**
-     * Set table name in presenter from Eloquent model.
+     * @param string $table
+     * @return ViewPresenterInterface
      */
-    private function setTableName()
+    public function getDataFromTable(string $table)
     {
-        $this->presenter->setTableName($this->model->getTable());
+        $this->model = null;
+        $this->presenter->reset();
+        $this->setTableName($table);
+        $this->setTableColumns($table);
+        return $this->presenter;
     }
 
-    private function setTableColumns()
+    /**
+     * Set table name in presenter from Eloquent model or string.
+     *
+     * @param string $name
+     * @return void
+     */
+    private function setTableName(string $name = null)
     {
-        $columns = $this->model->getConnection()
+        $this->presenter->setTableName($name ?? $this->model->getTable());
+    }
+
+    /**
+     * @param string|null $tableName
+     */
+    private function setTableColumns(string $tableName = null)
+    {
+        $columns = DB::connection()
             ->getSchemaBuilder()
-            ->getColumnListing($this->model->getTable());
+            ->getColumnListing($tableName ?? $this->model->getTable());
 
         foreach ($columns as $column) {
-            $this->presenter->addColumn($this->buildColumn($column));
+            $this->presenter->addColumn($this->buildColumn($column, $tableName));
         }
+
+        /*
+        $indexes = $this->model->getConnection()
+            ->getDoctrineSchemaManager()
+            ->listTableIndexes($tableName ?? $this->model->getTable());
+        */
     }
 
     /**
      * @param $columnName
+     * @param string|null $tableName
      * @return ColumnInterface
      */
-    private function buildColumn($columnName)
+    private function buildColumn($columnName, string $tableName = null)
     {
+        if (is_null($tableName)) {
         $databaseColumn = $this->model->getConnection()
             ->getDoctrineColumn($this->model->getTable(), $columnName);
+        } else {
+            $databaseColumn = DB::connection()
+                ->getDoctrineColumn($tableName, $columnName);
+        }
 
         return new Column([
             'name' => $columnName,
@@ -112,12 +146,28 @@ class ModelScanner implements ModelScannerInterface
      */
     public function getTables()
     {
+        return $this->tables;
+    }
+
+    /**
+     * Load tables from databases as string[]
+     */
+    public function loadTables()
+    {
         $schema = DB::connection()->getDoctrineSchemaManager();
         $tables = $schema->listTables();
         foreach ($tables as &$table) {
             $this->tables[] = $table->getName();
         }
 
-        return $this->tables;
+        $this->tablesWithoutModel = $this->tables;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTablesWithoutModel()
+    {
+        return $this->tablesWithoutModel;
     }
 }

@@ -135,4 +135,20 @@ class Column implements ColumnInterface
     {
         return $this->type;
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getIsNull()
+    {
+        return $this->isNotNull ? 'True' : 'False';
+    }
 }
