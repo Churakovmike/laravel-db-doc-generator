@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Interfaces;
 
 /**
- * Interface ColumnInterface
+ * Interface ColumnInterface.
  * @package ChurakovMike\DbDocumentor\Interfaces
  */
 interface ColumnInterface

@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Interfaces;
 
 /**
- * Interface ViewPresenterInterface
+ * Interface ViewPresenterInterface.
  */
 interface ViewPresenterInterface
 {

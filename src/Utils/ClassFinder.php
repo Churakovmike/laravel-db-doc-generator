@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Utils;
 
 /**
- * Class ClassFinder
+ * Class ClassFinder.
  * @package ChurakovMike\DbDocumentor\Utils
  */
 class ClassFinder
@@ -67,7 +67,7 @@ class ClassFinder
             $i++;
         }
         if (!$namespaceOk) {
-            return null;
+            return;
         } else {
             return $namespace;
         }

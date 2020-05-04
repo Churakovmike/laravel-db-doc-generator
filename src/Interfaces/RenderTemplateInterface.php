@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Interfaces;
 
 /**
- * Interface FileAccess
+ * Interface FileAccess.
  */
 interface RenderTemplateInterface
 {

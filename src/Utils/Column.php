@@ -2,11 +2,11 @@
 
 namespace ChurakovMike\DbDocumentor\Utils;
 
-use ChurakovMike\DbDocumentor\Traits\Configurable;
 use ChurakovMike\DbDocumentor\Interfaces\ColumnInterface;
+use ChurakovMike\DbDocumentor\Traits\Configurable;
 
 /**
- * Class Column
+ * Class Column.
  * @package ChurakovMike\DbDocumentor\Utils
  *
  * @property string $name

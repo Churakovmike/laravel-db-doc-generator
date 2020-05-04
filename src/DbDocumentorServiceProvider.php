@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 
 /**
- * Class DbDocumentorServiceProvider
+ * Class DbDocumentorServiceProvider.
  * @package ChurakovMike\DbDocumentor
  *
  * @property App $app
@@ -32,7 +32,7 @@ class DbDocumentorServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register console command
+     * Register console command.
      *
      * @return void
      */
@@ -44,7 +44,7 @@ class DbDocumentorServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register utils classes
+     * Register utils classes.
      *
      * @return void
      */

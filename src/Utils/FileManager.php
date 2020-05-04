@@ -6,7 +6,7 @@ use ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface;
 use Illuminate\Support\Facades\File;
 
 /**
- * Class FileManager
+ * Class FileManager.
  * @package ChurakovMike\DbDocumentor\Utils
  */
 class FileManager implements FileAccesorsInterface

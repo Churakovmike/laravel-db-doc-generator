@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Class ModelScanner
+ * Class ModelScanner.
  * @package ChurakovMike\DbDocumentor\src\Utils
  *
  * @property ViewPresenterInterface $presenter
@@ -116,8 +116,9 @@ class ModelScanner implements ModelScannerInterface
     private function buildColumn($columnName, string $tableName = null)
     {
         if (is_null($tableName)) {
-        $databaseColumn = $this->model->getConnection()
-            ->getDoctrineColumn($this->model->getTable(), $columnName);
+            $databaseColumn = $this->model
+                ->getConnection()
+                ->getDoctrineColumn($this->model->getTable(), $columnName);
         } else {
             $databaseColumn = DB::connection()
                 ->getDoctrineColumn($tableName, $columnName);
@@ -140,7 +141,7 @@ class ModelScanner implements ModelScannerInterface
     }
 
     /**
-     * Collect table names
+     * Collect table names.
      *
      * @return array
      */
@@ -150,7 +151,7 @@ class ModelScanner implements ModelScannerInterface
     }
 
     /**
-     * Load tables from databases as string[]
+     * Load tables from databases as string[].
      */
     public function loadTables()
     {

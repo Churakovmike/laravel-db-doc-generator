@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
 /**
- * Class DefaultGenerator
+ * Class DefaultGenerator.
  * @package ChurakovMike\DbDocumentor\Generators
  *
  * @property string $output
@@ -150,7 +150,7 @@ class DefaultGenerator
             $this->renderer->renderView(
                 'churakovmike_dbdoc::index',
                 [
-                    'tables' => $this->modelScanner->getTables()
+                    'tables' => $this->modelScanner->getTables(),
                 ]
             )
         );

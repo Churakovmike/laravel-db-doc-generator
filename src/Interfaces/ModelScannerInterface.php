@@ -5,7 +5,7 @@ namespace ChurakovMike\DbDocumentor\Interfaces;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Interface ModelScannerInterface
+ * Interface ModelScannerInterface.
  */
 interface ModelScannerInterface
 {

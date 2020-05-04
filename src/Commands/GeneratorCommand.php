@@ -12,7 +12,6 @@ use Illuminate\Console\Command;
  *
  * @property string $signature
  * @property string $description
- *
  */
 class GeneratorCommand extends Command
 {
@@ -67,7 +66,5 @@ class GeneratorCommand extends Command
         if (in_array($key, $this->options())) {
             return $this->option($key);
         }
-
-        return null;
     }
 }
