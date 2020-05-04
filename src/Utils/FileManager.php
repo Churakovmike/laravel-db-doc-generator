@@ -23,7 +23,6 @@ class FileManager implements FileAccesorsInterface
 
     public function copyTemplate()
     {
-
     }
 
     public function init()

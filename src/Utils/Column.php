@@ -117,6 +117,7 @@ class Column implements ColumnInterface
         if (empty($this->length)) {
             return $this->type;
         }
+
         return "{$this->type}({$this->length})";
     }
 

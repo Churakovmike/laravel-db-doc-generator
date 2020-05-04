@@ -61,6 +61,7 @@ class ModelScanner implements ModelScannerInterface
         $this->setTableColumns();
         $position = array_search($this->presenter->getTableName(), $this->tablesWithoutModel);
         unset($this->tablesWithoutModel[$position]);
+
         return $this->presenter;
     }
 
@@ -74,6 +75,7 @@ class ModelScanner implements ModelScannerInterface
         $this->presenter->reset();
         $this->setTableName($table);
         $this->setTableColumns($table);
+        
         return $this->presenter;
     }
 
