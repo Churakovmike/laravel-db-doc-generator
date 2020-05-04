@@ -65,7 +65,6 @@ class DbDocumentorServiceProvider extends ServiceProvider
         $this->app->bind('ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface', function ($app) {
             return $app->make(ModelScanner::class);
         });
-
     }
 
     public function register()
