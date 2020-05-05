@@ -26,12 +26,16 @@ ChurakovMike\DbDocumentor\DbDocumentorServiceProvider::class,
 
 Usage
 -----
-Run in from command line with next command
+Run in from command-line with next command
 ```php
 php artisan db-doc:generate
 ```
 By default database documentation will be generate in ./public/db-doc/
-If you need to change output destination, run commad with --output argument
+If you need to change output destination, run command with --output argument
 ```php
 php artisan db-doc:generate --output=path/to/your/destination
 ```
+When running DbDocumentor there are some command-line options 
+1. `--output`, specifies the directory to output generated documentation.
+1. `--model-path`, specifies the directory for searching Eloquent model files.
+1. `--excluded-dir`, specifies the directories to ignore during the search.
