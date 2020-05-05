@@ -4,6 +4,8 @@ Laravel Database Documentation Generator
 Requirements
 ------------
 + laravel 5.5+
++ Doctrine/dbal
++ Tokenizer Extension
 
 Getting started
 ---------------
