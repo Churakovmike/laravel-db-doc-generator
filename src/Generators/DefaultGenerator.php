@@ -106,7 +106,6 @@ class DefaultGenerator
                     $presenter = $this->modelScanner->getDataFromModel($object);
                     $this->saveResult($presenter);
                 } catch (\Throwable $exception) {
-                    echo $exception->getMessage();
                     continue;
                 }
             }
