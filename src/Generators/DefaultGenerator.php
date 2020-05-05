@@ -73,7 +73,6 @@ class DefaultGenerator
         $this->fileManager = $fileManager;
         $this->modelScanner = $modelScanner;
         $this->renderer = $renderer;
-        $this->prepare();
     }
 
     /**
@@ -81,6 +80,7 @@ class DefaultGenerator
      */
     public function run()
     {
+        $this->prepare();
         $this->startWalk();
     }
 

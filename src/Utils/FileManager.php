@@ -23,7 +23,7 @@ class FileManager implements FileAccesorsInterface
      */
     public function __construct()
     {
-        $this->init();
+        //$this->init();
     }
 
     /**

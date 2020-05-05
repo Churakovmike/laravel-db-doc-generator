@@ -19,9 +19,9 @@ class GeneratorCommand extends Command
      * @var string
      */
     protected $signature = 'db-doc:generate 
-                            {--output=: Output directory} 
-                            {--model-path=: Model file location} 
-                            {--excluded-dir=: Exclude directories from search}';
+                            {--output=} 
+                            {--model-path=} 
+                            {--excluded-dir=}';
 
     /**
      * @var string
@@ -63,7 +63,8 @@ class GeneratorCommand extends Command
      */
     private function getOption($key = null)
     {
-        if (in_array($key, $this->options())) {
+        $options = array_keys($this->option());
+        if (in_array($key, $options)) {
             return $this->option($key);
         }
     }
