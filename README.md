@@ -1,4 +1,5 @@
-# Laravel Database Documentation Generator
+Laravel Database Documentation Generator
+========================================
 
 ## Requirements
 + laravel 5.5+

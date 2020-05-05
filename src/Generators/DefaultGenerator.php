@@ -5,6 +5,7 @@ namespace ChurakovMike\DbDocumentor\Generators;
 use ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface;
 use ChurakovMike\DbDocumentor\Interfaces\RenderTemplateInterface;
+use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
 use ChurakovMike\DbDocumentor\Traits\Configurable;
 use ChurakovMike\DbDocumentor\Utils\ClassFinder;
 use Illuminate\Database\Eloquent\Model;
@@ -103,16 +104,7 @@ class DefaultGenerator
                     }
 
                     $presenter = $this->modelScanner->getDataFromModel($object);
-                    $this->fileManager->saveAsFile(
-                        $presenter->getTableName() . '.html',
-                        $this->renderer->renderView(
-                            'churakovmike_dbdoc::model-template',
-                            [
-                                'tables' => $this->modelScanner->getTables(),
-                                'presenter' => $presenter,
-                            ]
-                        )
-                    );
+                    $this->saveResult($presenter);
                 } catch (\Throwable $exception) {
                     echo $exception->getMessage();
                     continue;
@@ -122,16 +114,7 @@ class DefaultGenerator
 
         foreach ($this->modelScanner->getTablesWithoutModel() as $table) {
             $presenter = $this->modelScanner->getDataFromTable($table);
-            $this->fileManager->saveAsFile(
-                $presenter->getTableName() . '.html',
-                $this->renderer->renderView(
-                    'churakovmike_dbdoc::model-template',
-                    [
-                        'tables' => $this->modelScanner->getTables(),
-                        'presenter' => $presenter,
-                    ]
-                )
-            );
+            $this->saveResult($presenter);
         }
     }
 
@@ -144,6 +127,8 @@ class DefaultGenerator
     private function prepare()
     {
         clearstatcache();
+        $this->fileManager->setOutputDirectory($this->output);
+        $this->fileManager->createDefaultDirectory();
         $this->modelScanner->getTables();
         $this->fileManager->saveAsFile(
             'index.html',
@@ -167,5 +152,22 @@ class DefaultGenerator
             $this->modelPath,
             app_path() . DIRECTORY_SEPARATOR . 'Models',
         ];
+    }
+
+    /**
+     * @param ViewPresenterInterface $presenter
+     */
+    private function saveResult(ViewPresenterInterface $presenter)
+    {
+        $this->fileManager->saveAsFile(
+            $presenter->getTableName() . '.html',
+            $this->renderer->renderView(
+                'churakovmike_dbdoc::model-template',
+                [
+                    'tables' => $this->modelScanner->getTables(),
+                    'presenter' => $presenter,
+                ]
+            )
+        );
     }
 }
