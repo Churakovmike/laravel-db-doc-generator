@@ -12,6 +12,7 @@ use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 /**
  * Class DbDocumentorServiceProvider.
  * @package ChurakovMike\DbDocumentor
+ * @mixin ServiceProvider
  *
  * @property App $app
  */
