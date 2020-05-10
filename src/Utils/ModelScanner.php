@@ -5,6 +5,9 @@ namespace ChurakovMike\DbDocumentor\Utils;
 use ChurakovMike\DbDocumentor\Interfaces\ColumnInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ModelScannerInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
+use ChurakovMike\DbDocumentor\Utils\Tables\ForeignKey;
+use ChurakovMike\DbDocumentor\Utils\Tables\Index;
+use Doctrine\DBAL\Schema\ForeignKeyConstraint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -75,7 +78,7 @@ class ModelScanner implements ModelScannerInterface
         $this->presenter->reset();
         $this->setTableName($table);
         $this->setTableColumns($table);
-        
+
         return $this->presenter;
     }
 
@@ -103,13 +106,16 @@ class ModelScanner implements ModelScannerInterface
             $this->presenter->addColumn($this->buildColumn($column, $tableName));
         }
 
-        $indexes = $this->model->getConnection()
-            ->getDoctrineSchemaManager()
-            ->listTableIndexes($tableName ?? $this->model->getTable());
+        $schemaManager = DB::connection()
+            ->getDoctrineSchemaManager();
 
-        $foreignKey = $this->model->getConnection()
-            ->getDoctrineSchemaManager()
-            ->listTableForeignKeys($tableName ?? $this->model->getTable());
+        foreach ($schemaManager->listTableIndexes($tableName ?? $this->model->getTable()) as $tableIndex) {
+            $this->presenter->addIndex($this->buildIndex($tableIndex));
+        }
+
+        foreach ($schemaManager->listTableForeignKeys($tableName ?? $this->model->getTable()) as $tableForeignKey) {
+            $this->presenter->addForeignKey($this->buildForeignKey($tableForeignKey));
+        }
     }
 
     /**
@@ -174,5 +180,30 @@ class ModelScanner implements ModelScannerInterface
     public function getTablesWithoutModel()
     {
         return $this->tablesWithoutModel;
+    }
+
+
+    /**
+     * @param \Doctrine\DBAL\Schema\Index $tableIndex
+     *
+     * @return Index
+     */
+    private function buildIndex(\Doctrine\DBAL\Schema\Index $tableIndex)
+    {
+        return new Index([
+            'name' => $tableIndex->getName(),
+        ]);
+    }
+
+    /**
+     * @param ForeignKeyConstraint $tableForeignKey
+     *
+     * @return ForeignKey
+     */
+    private function buildForeignKey(ForeignKeyConstraint $tableForeignKey)
+    {
+        return new ForeignKey([
+            'name' => $tableForeignKey->getName(),
+        ]);
     }
 }

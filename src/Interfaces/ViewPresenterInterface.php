@@ -26,9 +26,31 @@ interface ViewPresenterInterface
     public function addColumn(ColumnInterface $column);
 
     /**
-     * @return mixed
+     * @return array|ColumnInterface[]
      */
     public function getColumns();
+
+    /**
+     * @param IndexInterface $index
+     * @return mixed
+     */
+    public function addIndex(IndexInterface $index);
+
+    /**
+     * @return array|IndexInterface[]
+     */
+    public function getIndexes();
+
+    /**
+     * @param ForeignKeyInterface $foreignKey
+     * @return mixed
+     */
+    public function addForeignKey(ForeignKeyInterface $foreignKey);
+
+    /**
+     * @return array|ForeignKeyInterface[]
+     */
+    public function getForeignKeys();
 
     /**
      * @return mixed
