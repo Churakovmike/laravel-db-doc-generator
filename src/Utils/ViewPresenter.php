@@ -3,6 +3,8 @@
 namespace ChurakovMike\DbDocumentor\Utils;
 
 use ChurakovMike\DbDocumentor\Interfaces\ColumnInterface;
+use ChurakovMike\DbDocumentor\Interfaces\ForeignKeyInterface;
+use ChurakovMike\DbDocumentor\Interfaces\IndexInterface;
 use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
 
 /**
@@ -11,6 +13,8 @@ use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
  *
  * @property string $tableName
  * @property array|ColumnInterface[] $columns
+ * @property array|IndexInterface[] $indexes
+ * @property array|ForeignKeyInterface[] $foreignKeys
  */
 class ViewPresenter implements ViewPresenterInterface
 {
@@ -20,9 +24,19 @@ class ViewPresenter implements ViewPresenterInterface
     protected $tableName;
 
     /**
-     * @var array $columns
+     * @var array|ColumnInterface[] $columns
      */
     protected $columns = [];
+
+    /**
+     * @var array|IndexInterface[] $indexes
+     */
+    protected $indexes = [];
+
+    /**
+     * @var array|ForeignKeyInterface[] $foreignKeys
+     */
+    protected $foreignKeys = [];
 
     /**
      * @return string
@@ -55,6 +69,38 @@ class ViewPresenter implements ViewPresenterInterface
     public function getColumns()
     {
         return $this->columns;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIndexes()
+    {
+        return $this->indexes;
+    }
+
+    /**
+     * @param IndexInterface $index
+     */
+    public function addIndex(IndexInterface $index)
+    {
+        $this->indexes[] = $index;
+    }
+
+    /**
+     * @return array|ForeignKeyInterface[]
+     */
+    public function getForeignKeys()
+    {
+        return $this->foreignKeys;
+    }
+
+    /**
+     * @param ForeignKeyInterface $foreignKey
+     */
+    public function addForeignKey(ForeignKeyInterface $foreignKey)
+    {
+        $this->foreignKeys[] = $foreignKey;
     }
 
     /**

@@ -103,11 +103,13 @@ class ModelScanner implements ModelScannerInterface
             $this->presenter->addColumn($this->buildColumn($column, $tableName));
         }
 
-        /*
         $indexes = $this->model->getConnection()
             ->getDoctrineSchemaManager()
             ->listTableIndexes($tableName ?? $this->model->getTable());
-        */
+
+        $foreignKey = $this->model->getConnection()
+            ->getDoctrineSchemaManager()
+            ->listTableForeignKeys($tableName ?? $this->model->getTable());
     }
 
     /**
