@@ -61,12 +61,14 @@ class GeneratorCommand extends Command
 
             $generator->run();
         } catch (GeneratorException $exception) {
-            $this->output->writeln($exception->getMessage());
+            $this->output->writeln('<fg=red>' . $exception->getMessage() . '</>');
+            exit();
         } catch (\Exception $exception) {
-            $this->output->writeln($exception->getMessage());
+            $this->output->writeln('<fg=red>' . $exception->getMessage() . '</>');
+            exit();
         }
 
-        $this->output->writeln('Database documentation was generated successfully');
+        $this->output->writeln('<fg=green>Database documentation was generated successfully</>');
     }
 
     /**
