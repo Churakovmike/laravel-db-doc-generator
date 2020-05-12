@@ -7,6 +7,7 @@ namespace ChurakovMike\DbDocumentor\Commands;
 use ChurakovMike\DbDocumentor\Exceptions\GeneratorException;
 use ChurakovMike\DbDocumentor\Generators\DefaultGenerator;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  * Class GeneratorCommand.
@@ -14,6 +15,7 @@ use Illuminate\Console\Command;
  *
  * @property string $signature
  * @property string $description
+ * @property ConsoleOutput $output
  */
 class GeneratorCommand extends Command
 {
@@ -26,15 +28,22 @@ class GeneratorCommand extends Command
                             {--excluded-dir=}';
 
     /**
+     * @var ConsoleOutput $output
+     */
+    protected $output;
+
+    /**
      * @var string
      */
     protected $description = 'Command for start generate database documentation';
 
     /**
      * TestCommand constructor.
+     * @param ConsoleOutput $output
      */
-    public function __construct()
+    public function __construct(ConsoleOutput $output)
     {
+        $this->output = $output;
         parent::__construct();
     }
 
@@ -52,11 +61,12 @@ class GeneratorCommand extends Command
 
             $generator->run();
         } catch (GeneratorException $exception) {
-            var_dump($exception);
+            $this->output->writeln($exception->getMessage());
         } catch (\Exception $exception) {
-            var_dump($exception->getMessage());
+            $this->output->writeln($exception->getMessage());
         }
-        var_dump(scandir(public_path()));
+
+        $this->output->writeln('Database documentation was generated successfully');
     }
 
     /**
