@@ -10,10 +10,35 @@ use ChurakovMike\DbDocumentor\Traits\Configurable;
 /**
  * Class ForeignKey
  * @package ChurakovMike\DbDocumentor\Utils\Tables
+ *
+ * @property string $name
+ * @property array|string[] $columnNames
+ * @property string $foreignTableName
+ * @property array|string[] $foreignColumns
  */
 class ForeignKey implements ForeignKeyInterface
 {
     use Configurable;
+
+    /**
+     * @var string $name
+     */
+    protected $name;
+
+    /**
+     * @var array|string[]
+     */
+    protected $columnNames = [];
+
+    /**
+     * @var string $foreignTableName
+     */
+    protected $foreignTableName;
+
+    /**
+     * @var string $foreignColumns
+     */
+    protected $foreignColumns;
 
     /**
      * ForeignKey constructor.
@@ -24,8 +49,36 @@ class ForeignKey implements ForeignKeyInterface
         $this->loadConfig($config);
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
-        // TODO: Implement getName() method.
+        return $this->name;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getForeignTableName(): string
+    {
+        return $this->foreignTableName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColumnNames(): string
+    {
+        return implode(' ', $this->columnNames);
+    }
+    
+    /**
+     * @return string
+     */
+    public function getForeignColumns(): string
+    {
+        return implode(' ', $this->foreignColumns);
     }
 }

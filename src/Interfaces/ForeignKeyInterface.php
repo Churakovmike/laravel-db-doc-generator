@@ -11,5 +11,20 @@ interface ForeignKeyInterface
     /**
      * @return string
      */
-    public function getName();
+    public function getName(): string;
+
+    /**
+     * @return string
+     */
+    public function getForeignTableName(): string;
+
+    /**
+     * @return string
+     */
+    public function getColumnNames(): string;
+
+    /**
+     * @return string
+     */
+    public function getForeignColumns(): string;
 }

@@ -114,5 +114,7 @@ class ViewPresenter implements ViewPresenterInterface
     {
         $this->tableName = '';
         $this->columns = [];
+        $this->foreignKeys = [];
+        $this->indexes = [];
     }
 }
