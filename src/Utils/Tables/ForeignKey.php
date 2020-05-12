@@ -8,7 +8,7 @@ use ChurakovMike\DbDocumentor\Interfaces\ForeignKeyInterface;
 use ChurakovMike\DbDocumentor\Traits\Configurable;
 
 /**
- * Class ForeignKey
+ * Class ForeignKey.
  * @package ChurakovMike\DbDocumentor\Utils\Tables
  *
  * @property string $name
@@ -56,7 +56,6 @@ class ForeignKey implements ForeignKeyInterface
     {
         return $this->name;
     }
-
 
     /**
      * @return string

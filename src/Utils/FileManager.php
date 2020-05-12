@@ -39,7 +39,7 @@ class FileManager implements FileAccesorsInterface
     }
 
     /**
-     * TODO;
+     * TODO;.
      */
     public function copyTemplate()
     {

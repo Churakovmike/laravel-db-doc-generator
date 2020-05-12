@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ChurakovMike\DbDocumentor;
 
-use Illuminate\Support\Facades\App;
+use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 use ChurakovMike\DbDocumentor\Utils\{
     FileManager, ModelScanner, RenderTemplate, ViewPresenter
 };
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
-use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
 
 /**
  * Class DbDocumentorServiceProvider.

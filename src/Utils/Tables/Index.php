@@ -8,7 +8,7 @@ use ChurakovMike\DbDocumentor\Interfaces\IndexInterface;
 use ChurakovMike\DbDocumentor\Traits\Configurable;
 
 /**
- * Class Index
+ * Class Index.
  * @package ChurakovMike\DbDocumentor\Utils\Tables
  */
 class Index implements IndexInterface

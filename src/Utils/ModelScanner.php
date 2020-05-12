@@ -208,7 +208,7 @@ class ModelScanner implements ModelScannerInterface
             'name' => $tableForeignKey->getName(),
             'columnNames' => $tableForeignKey->getLocalColumns(),
             'foreignTableName' => $tableForeignKey->getForeignTableName(),
-            'foreignColumns' => $tableForeignKey->getForeignColumns()
+            'foreignColumns' => $tableForeignKey->getForeignColumns(),
         ]);
     }
 }

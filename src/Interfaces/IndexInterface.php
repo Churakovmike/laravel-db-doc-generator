@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Interfaces;
 
 /**
- * Interface IndexInterface
+ * Interface IndexInterface.
  * @package ChurakovMike\DbDocumentor\Interfaces
  */
 interface IndexInterface
