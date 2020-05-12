@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ChurakovMike\DbDocumentor\Utils\Tables;
 
 use ChurakovMike\DbDocumentor\Interfaces\IndexInterface;

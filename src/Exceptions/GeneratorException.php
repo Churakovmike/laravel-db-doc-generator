@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ChurakovMike\DbDocumentor\Exceptions;
 
 use Exception;

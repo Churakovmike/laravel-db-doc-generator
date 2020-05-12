@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ChurakovMike\DbDocumentor\Generators;
 
 use ChurakovMike\DbDocumentor\Interfaces\FileAccesorsInterface;

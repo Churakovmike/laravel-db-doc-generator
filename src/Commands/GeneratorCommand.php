@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ChurakovMike\DbDocumentor\Commands;
 
 use ChurakovMike\DbDocumentor\Exceptions\GeneratorException;
