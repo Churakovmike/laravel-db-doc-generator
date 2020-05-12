@@ -72,7 +72,7 @@ class ForeignKey implements ForeignKeyInterface
     {
         return implode(' ', $this->columnNames);
     }
-    
+
     /**
      * @return string
      */

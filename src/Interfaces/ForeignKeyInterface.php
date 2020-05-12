@@ -3,7 +3,7 @@
 namespace ChurakovMike\DbDocumentor\Interfaces;
 
 /**
- * Interface ForeignKeyInterface
+ * Interface ForeignKeyInterface.
  * @package ChurakovMike\DbDocumentor\Interfaces
  */
 interface ForeignKeyInterface

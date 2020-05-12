@@ -184,7 +184,6 @@ class ModelScanner implements ModelScannerInterface
         return $this->tablesWithoutModel;
     }
 
-
     /**
      * @param \Doctrine\DBAL\Schema\Index $tableIndex
      *
