@@ -1,6 +1,5 @@
 Laravel Database Documentation Generator
 ========================================
-[![License](https://poser.pugx.org/churakovmike/laravel-db-doc-generator/license)](https://packagist.org/packages/churakovmike/laravel-db-doc-generator)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/Churakovmike/laravel-db-doc-generator)
 ----------------------------------------------------------------------------------------------------------------------
 Requirements
