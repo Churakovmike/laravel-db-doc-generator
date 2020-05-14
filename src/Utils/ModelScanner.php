@@ -193,6 +193,7 @@ class ModelScanner implements ModelScannerInterface
     {
         return new Index([
             'name' => $tableIndex->getName(),
+            'columns' => $tableIndex->getColumns(),
         ]);
     }
 

@@ -1,30 +1,23 @@
+<?php
+/** @var \ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface $presenter */
+?>
 @if(count($presenter->getIndexes()) > 0)
-<h2>TODO:Indexes</h2>
+<h2>Indexes</h2>
 <div class="table-responsive">
     <table class="table table-striped table-sm table-bordered">
         <thead>
         <tr>
-            <th>Key's name</th>
-            <th>Type</th>
+            <th>Index name</th>
+            <th>Index fields</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($presenter->getIndexes() as $index)
         <tr>
-            <td>id</td>
-            <td>big integer</td>
+            <td>{{$index->getName()}}</td>
+            <td>{{$index->getColumns()}}</td>
         </tr>
-        <tr>
-            <td>email</td>
-            <td>varchar(128)</td>
-        </tr>
-        <tr>
-            <td>name</td>
-            <td>varchar(128)</td>
-        </tr>
-        <tr>
-            <td>biography</td>
-            <td>text</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 </div>

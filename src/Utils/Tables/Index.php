@@ -10,10 +10,23 @@ use ChurakovMike\DbDocumentor\Traits\Configurable;
 /**
  * Class Index.
  * @package ChurakovMike\DbDocumentor\Utils\Tables
+ *
+ * @property string $name
+ * @property array $columns
  */
 class Index implements IndexInterface
 {
     use Configurable;
+
+    /**
+     * @var string $name
+     */
+    protected $name;
+
+    /**
+     * @var array $column
+     */
+    protected $columns;
 
     /**
      * Index constructor.
@@ -24,8 +37,19 @@ class Index implements IndexInterface
         $this->loadConfig($config);
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
-        // TODO: Implement getName() method.
+        return $this->name ?? 'No index name';
+    }
+
+    /**
+     * @return string
+     */
+    public function getColumns(): string
+    {
+        return implode(' ', $this->columns);
     }
 }
