@@ -1,6 +1,8 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <h1>{{$presenter->getTableName()}}</h1>TODO:description from model
-    <div>TODO:associated with model App\User.php</div>
+    @if(!empty($presenter->getModelClassName()))
+        <div>Associated with model {{$presenter->getModelClassName()}}</div>
+    @endif
     <h2>Table columns</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">

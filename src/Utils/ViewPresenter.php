@@ -17,6 +17,7 @@ use ChurakovMike\DbDocumentor\Interfaces\ViewPresenterInterface;
  * @property array|ColumnInterface[] $columns
  * @property array|IndexInterface[] $indexes
  * @property array|ForeignKeyInterface[] $foreignKeys
+ * @property string $modelClassName
  */
 class ViewPresenter implements ViewPresenterInterface
 {
@@ -39,6 +40,11 @@ class ViewPresenter implements ViewPresenterInterface
      * @var array|ForeignKeyInterface[] $foreignKeys
      */
     protected $foreignKeys = [];
+
+    /**
+     * @var string $modelClassName
+     */
+    protected $modelClassName;
 
     /**
      * @return string
@@ -106,6 +112,22 @@ class ViewPresenter implements ViewPresenterInterface
     }
 
     /**
+     * @param string $name
+     */
+    public function addModelClassName(string $name)
+    {
+        $this->modelClassName = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModelClassName()
+    {
+        return $this->modelClassName;
+    }
+
+    /**
      * Flush stored data.
      *
      * @return void
@@ -115,6 +137,7 @@ class ViewPresenter implements ViewPresenterInterface
         $this->tableName = '';
         $this->columns = [];
         $this->foreignKeys = [];
+        $this->modelClassName = '';
         $this->indexes = [];
     }
 }
