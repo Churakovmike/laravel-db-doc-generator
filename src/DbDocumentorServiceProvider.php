@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace ChurakovMike\DbDocumentor;
 
 use ChurakovMike\DbDocumentor\Commands\GeneratorCommand;
-use ChurakovMike\DbDocumentor\Utils\{
-    FileManager, ModelScanner, RenderTemplate, ViewPresenter
-};
+use ChurakovMike\DbDocumentor\Utils\FileManager;
+use ChurakovMike\DbDocumentor\Utils\ModelScanner;
+use ChurakovMike\DbDocumentor\Utils\RenderTemplate;
+use ChurakovMike\DbDocumentor\Utils\ViewPresenter;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
