@@ -3,6 +3,7 @@ Laravel Database Documentation Generator
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/Churakovmike/laravel-db-doc-generator)
 [![StyleCI](https://github.styleci.io/repos/259718572/shield?branch=master)](https://github.styleci.io/repos/259718572)
 [![Latest Stable Version](https://poser.pugx.org/churakovmike/laravel-db-doc-generator/v)](//packagist.org/packages/churakovmike/laravel-db-doc-generator)
+[![License](https://poser.pugx.org/churakovmike/laravel-db-doc-generator/license)](//packagist.org/packages/churakovmike/laravel-db-doc-generator)
 ----------------------------------------------------------------------------------------------------------------------
 Requirements
 ------------
