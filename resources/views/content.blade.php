@@ -3,17 +3,17 @@
     @if(!empty($presenter->getModelClassName()))
         <div>Associated with model {{$presenter->getModelClassName()}}</div>
     @endif
-    <h2>Table columns</h2>
+    <h2>@lang('churakovmike_dbdoc::dbdoc.table-header')</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">
             <thead>
             <tr>
-                <th>Column</th>
-                <th>Type</th>
-                <th>Comment</th>
-                <th>Default</th>
-                <th>Not null</th>
-                <th>Options</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column')</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column-type')</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column-comment')</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column-default')</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column-not-null')</th>
+                <th>@lang('churakovmike_dbdoc::dbdoc.table-column-options')</th>
             </tr>
             </thead>
             <tbody>

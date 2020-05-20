@@ -32,6 +32,7 @@ class DbDocumentorServiceProvider extends ServiceProvider
             $this->registerCommands();
             $this->registerClasses();
             $this->loadViewsFrom(__DIR__ . '/../resources/views', 'churakovmike_dbdoc');
+            $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'churakovmike_dbdoc');
         }
     }
 
