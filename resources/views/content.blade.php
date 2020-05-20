@@ -1,7 +1,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <h1>{{$presenter->getTableName()}}</h1>
     @if(!empty($presenter->getModelClassName()))
-        <div>Associated with model {{$presenter->getModelClassName()}}</div>
+        <div>@lang('churakovmike_dbdoc::dbdoc.associated'){{$presenter->getModelClassName()}}</div>
     @endif
     <h2>@lang('churakovmike_dbdoc::dbdoc.table-header')</h2>
     <div class="table-responsive">

@@ -2,6 +2,7 @@
 return [
     'title' => 'DbDocumentator',
     'nav-link' => 'DbDocumentator',
+    'associated' => 'Ассоциирована с классом модели - ',
     /* ===============================  */
     'table-header' => 'Колонки таблицы',
     'table-column' => 'Колонка',

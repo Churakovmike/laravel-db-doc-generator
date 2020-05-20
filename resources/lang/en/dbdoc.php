@@ -2,6 +2,7 @@
 return [
     'title' => 'DbDocumentator',
     'nav-link' => 'DbDocumentator',
+    'associated' => 'Associated with model ',
     /* ===============================  */
     'table-header' => 'Table columns',
     'table-column' => 'Column',
