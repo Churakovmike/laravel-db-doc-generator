@@ -45,3 +45,4 @@ When running DbDocumentor there are some command-line options
 1. `--output`, specifies the directory to output generated documentation.
 1. `--model-path`, specifies the directory for searching Eloquent model files.
 1. `--excluded-dir`, specifies the directories to ignore during the search.
+1. `--lang`, specifies the documentation language.
