@@ -10,6 +10,8 @@ use ChurakovMike\DbDocumentor\Utils\ModelScanner;
 use ChurakovMike\DbDocumentor\Utils\RenderTemplate;
 use ChurakovMike\DbDocumentor\Utils\ViewPresenter;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -33,6 +35,14 @@ class DbDocumentorServiceProvider extends ServiceProvider
             $this->registerClasses();
             $this->loadViewsFrom(__DIR__ . '/../resources/views', 'churakovmike_dbdoc');
             $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'churakovmike_dbdoc');
+        }
+
+        $this->publishes([
+            __DIR__ . '/../public' => 'public/vendor/dbdoc',
+        ], 'public');
+
+        if (!File::isDirectory(public_path('vendor/dbdoc'))) {
+            Artisan::call('vendor:publish', ['--tag' => 'public', '--force' => '']);
         }
     }
 
