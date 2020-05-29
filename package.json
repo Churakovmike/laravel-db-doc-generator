@@ -1,0 +1,23 @@
+{
+  "name": "laravel-db-doc-generator",
+  "version": "1.0.0",
+  "description": "Laravel Database Documentation Generator\r ========================================\r [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/Churakovmike/laravel-db-doc-generator)\r [![StyleCI](https://github.styleci.io/repos/259718572/shield?branch=master)](https://github.styleci.io/repos/259718572)\r [![Latest Stable Version](https://poser.pugx.org/churakovmike/laravel-db-doc-generator/v)](//packagist.org/packages/churakovmike/laravel-db-doc-generator)\r [![License](https://poser.pugx.org/churakovmike/laravel-db-doc-generator/license)](//packagist.org/packages/churakovmike/laravel-db-doc-generator)\r ----------------------------------------------------------------------------------------------------------------------\r Requirements\r ------------\r + laravel 5.5+\r + Tokenizer Extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Churakovmike/laravel-db-doc-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Churakovmike/laravel-db-doc-generator/issues"
+  },
+  "homepage": "https://github.com/Churakovmike/laravel-db-doc-generator#readme",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "webpack": "^4.43.0"
+  }
+}
