@@ -24,7 +24,7 @@ use Illuminate\Support\ServiceProvider;
 class DbDocumentorServiceProvider extends ServiceProvider
 {
     /**
-     * Service provider for grid.
+     * Service provider for Database Documentor.
      *
      * @return void
      */
